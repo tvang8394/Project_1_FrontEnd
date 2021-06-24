@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="/css/style.css" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <div class="container text-center" id="header">
+        <h1>Dashboard</h1>
+
+        <div id="insertName"></div>
+        <a class="btn btn-info btn-sm mb-2" href="pitchPage.html" id="pitchBtn" hidden>Create Pitch</a>
+
+    </div>
+    <div class="container px-4 py-5">
+        <div class="d-flex justify-content-lg-between">
+            <h2 class="pb-2 border-bottom">Story Pitch: Approval Needed</h2>
+            <button class="btn btn-dark btn-sm mb-2" type="button" onclick="logout()">Logout</button>
+        </div>
+        <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5" id="custom-cards">
+
+
+
+
+
+            <div class="alert alert-danger" role="alert" id="reasonDenyAlert" hidden>
+
+                <label class="col-sm-3 col-form-label">Reason for denial</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="reasonDeny">
+
+                    <button class="btn btn-danger " type="button" id="deny">Deny</button>
+                    <button class="btn btn-primary" onclick="showReasonDenyTrue()">Cancel</button>
+                </div>
+            </div>
+            <div class="alert alert-primary" role="alert" id="editAlert" hidden>
+                <form class="needs-validation">
+                    <div class="row g-3">
+                        <div class="col-sm-12">
+                            <label for="titel" class="form-label">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="" value="" required>
+                            <div class="invalid-feedback">
+                                Valid title is required.
+                            </div>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <label for="completionDate" class="form-label">Completion Date</label>
+                            <input type="date" class="form-control" id="completionDate" placeholder="" value=""
+                                required="">
+                            <div class="invalid-feedback">
+                                Valid date name is required.
+                            </div>
+                        </div>
+
+
+                        <div class="col-12">
+                            <label for="tagLine" class="form-label">Tag Line</label>
+                            <input type="text" class="form-control" id="tagLine" placeholder="" value="" required="">
+                            <div class="invalid-feedback">
+                                Valid date name is required.
+                            </div>
+                        </div>
+
+
+                        <hr class="my-4">
+                        <button class="w-100 btn btn-primary btn-lg" type="button" id="updateBtn"">Update
+                            Pitch</button>
+                        <button class=" w-100 btn btn-danger btn-lg" type="button" id="closeEdit">Close Edit</button>
+                </form>
+            </div>
+        </div>
+        <!-- Button trigger modal -->
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">More Information</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body" id="modal-body">
+
+                    </div>
+                    <div class="modal-body" id="approvalStats">
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script>
+<script type="text/javascript" src="/scripts/createAccount.js"></script>
+<script type="text/javascript" src="/scripts/displayPitch.js"></script>
+<script type="text/javascript" src="/scripts/logout.js"></script>
+<script type="text/javascript" src="/scripts/approvePitch.js"></script>
+<script type="text/javascript" src="/scripts/deletePitch.js"></script>
+<script type="text/javascript" src="/scripts/denyPitch.js"></script>
+<script type="text/javascript" src="/scripts/editPitch.js"></script>
+</html>

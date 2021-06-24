@@ -1,0 +1,10 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .full-height {
+    width: 100%;
+    border: 3px dotted blue;
+    padding: 1em;
+  }
