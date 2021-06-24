@@ -43,6 +43,17 @@
                     <button class="btn btn-primary" onclick="showReasonDenyTrue()">Cancel</button>
                 </div>
             </div>
+
+            <div class="alert alert-success" role="alert" id="uploadAlert" hidden>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Pitch</label>
+                    <input class="form-control" type="file" id="formFile">
+                </div>
+                <button class="btn btn-success">Upload</button>
+                <button class="btn btn-primary" id="closeUploadAlert">Close</button>
+            </div>
+
+
             <div class="alert alert-primary" role="alert" id="editAlert" hidden>
                 <form class="needs-validation">
                     <div class="row g-3">
@@ -118,4 +129,5 @@
 <script type="text/javascript" src="/scripts/deletePitch.js"></script>
 <script type="text/javascript" src="/scripts/denyPitch.js"></script>
 <script type="text/javascript" src="/scripts/editPitch.js"></script>
+
 </html>

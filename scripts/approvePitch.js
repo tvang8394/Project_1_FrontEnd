@@ -5,7 +5,6 @@ function approvePitch(newPitch) {
   console.log(newPitch)
   xhttp = new XMLHttpRequest()
 
-
   switch (editorType) {
     case "Assistant": {
       xhttp.open("POST", url, true);
@@ -35,6 +34,17 @@ function approvePitch(newPitch) {
       xhttp.setRequestHeader("Content-type", "application/json");
       console.log(newPitch)
       newPitch.seniorApproval = true;
+      let update = JSON.stringify(newPitch);
+      console.log(update);
+      xhttp.send(update);
+      window.location.reload();
+      break;
+    }
+    case "Author": {
+      xhttp.open("POST", url, true);
+      xhttp.setRequestHeader("Content-type", "application/json");
+      console.log(newPitch)
+      newPitch.description = newPitch.description + "@:EDIT APPROVED BY AUTHOR"
       let update = JSON.stringify(newPitch);
       console.log(update);
       xhttp.send(update);

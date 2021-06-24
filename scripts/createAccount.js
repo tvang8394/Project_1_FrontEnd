@@ -97,6 +97,7 @@ function createPitch() {
       tagLine: tagLine,
       description: description
     };
+    
     xhttp.open("POST", url, true);
     xhttp.setRequestHeader("Content-type", "application/json");
     body = JSON.stringify(body);

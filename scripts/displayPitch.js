@@ -96,15 +96,22 @@ function createCard(pitch) {
   let approvalStatus = document.getElementById("approvalStats")
   let deniedBadge = document.createElement("span");
   let successBadge = document.createElement("span");
+  let highPriority = document.createElement("span");
   let editButton = document.createElement("span");
   let updateBtn = document.getElementById("updateBtn");
   let closeEdit = document.getElementById("closeEdit");
+  let uploadBtn = document.createElement("button");
+  
+  let year = pitch.completionDate.split('-')
+  console.log(pitch.completionDate)
+  console.log(year)
+  let today = new Date();
 
-
-
-  editButton.classList.add("glyphicon", "glyphicon-pencil", "btn", "btn-warning", "col-12");
+  uploadBtn.classList.add("btn", "btn-success")
+  editButton.classList.add("glyphicon", "glyphicon-pencil", "btn", "btn-warning", "col-2");
   deniedBadge.classList.add("badge", "rounded-pill", "bg-danger")
   successBadge.classList.add("badge", "rounded-pill", "bg-success")
+  highPriority.classList.add("badge", "rounded-pill", "bg-success")
   moreBtn.classList.add("btn", "btn-primary", "g-2")
   approveBtn.classList.add("btn", "btn-success")
   approveBtn.setAttribute("type", "button")
@@ -115,9 +122,10 @@ function createCard(pitch) {
   deleteBtn.classList.add("btn", "btn-info")
 
 
+  updateBtn.setAttribute("type", "button")
   moreBtn.setAttribute("type", "button")
   moreBtn.setAttribute("data-bs-toggle", "modal")
-  moreBtn.setAttribute("data-bs-target","#exampleModal")
+  moreBtn.setAttribute("data-bs-target", "#exampleModal")
 
   denyBtn.setAttribute("type", "button")
   denyBtn.setAttribute("id", "denyBtn")
@@ -139,11 +147,11 @@ function createCard(pitch) {
     editAlert.removeAttribute("hidden");
 
   })
-  closeEdit.addEventListener("click", function() {
+  closeEdit.addEventListener("click", function () {
     let editAlert = document.getElementById("editAlert");
     editAlert.setAttribute("hidden", true);
   })
-  updateBtn.addEventListener("click", function() {
+  updateBtn.addEventListener("click", function () {
     editPitch(pitch)
   })
   author.classList.add("card-text")
@@ -177,16 +185,101 @@ function createCard(pitch) {
   deleteBtn.innerText = "Delete Pitch"
   deniedBadge.innerText = "Status: Denied (refer to More Info)";
   successBadge.innerText = "Status: Approved";
+  highPriority.innerText = "Status: HIGH PRIORITY";
   editButton.innerText = "Edit"
+  uploadBtn.innerText = "Upload Final Pitch"
   customCards.appendChild(secondDiv);
   secondDiv.appendChild(thirdDiv);
   thirdDiv.appendChild(h5)
+
   if (pitch.denied != false) {
     thirdDiv.appendChild(deniedBadge)
   }
-  if (pitch.denied != false && pitch.assistantApproval && pitch.generalApproval && pitch.seniorApproval) {
-    thirdDiv.appendChild(successBadge)
+  let daysLeft;
+  let highPriorityBool = false;
+  if (type != "Author") {
+    if (parseInt(year[0]) == today.getFullYear()) {
+      console.log(year[0])
+      if (parseInt(year[1]) == today.getMonth()) {
+        console.log(year[1])
+        daysLeft = today.getDate() -year[2]
+        
+      } else {
+        daysLeft = (30 - today.getDate()) + parseInt(year[2])
+        // highPriority = false;
 
+      }
+
+    }
+  }
+
+  if (type != "Author" && type == "Assistant") {
+    if (daysLeft <= 10)  {
+      thirdDiv.appendChild(highPriority)
+      fifthDiv.appendChild(approveBtn)
+      fifthDiv.appendChild(denyBtn)
+      fifthDiv.appendChild(moreBtn)
+      fifthDiv.appendChild(editButton)
+      approveBtn.addEventListener("click", function() {highPriorityBool = false})
+    } else if ((daysLeft > 10) && highPriorityBool ==false) {
+      fifthDiv.appendChild(approveBtn)
+      fifthDiv.appendChild(denyBtn)
+      fifthDiv.appendChild(moreBtn)
+      fifthDiv.appendChild(editButton)
+    } else if (highPriorityBool == false) {
+      fifthDiv.appendChild(moreBtn)
+      
+      
+    }else {
+      fifthDiv.appendChild(moreBtn)
+      
+    }
+    
+  }
+
+  if (type != "Author") {
+    if (daysLeft <= 10)  {
+      thirdDiv.appendChild(highPriority)
+      fifthDiv.appendChild(approveBtn)
+      fifthDiv.appendChild(denyBtn)
+      fifthDiv.appendChild(moreBtn)
+      fifthDiv.appendChild(editButton)
+      approveBtn.addEventListener("click", function() {highPriorityBool = false})
+    } else if ((daysLeft > 10) && highPriorityBool ==false) {
+      fifthDiv.appendChild(approveBtn)
+      fifthDiv.appendChild(denyBtn)
+      fifthDiv.appendChild(moreBtn)
+      fifthDiv.appendChild(editButton)
+    } else if (highPriorityBool == false) {
+      fifthDiv.appendChild(moreBtn)
+    }else {
+      fifthDiv.appendChild(moreBtn)
+    }
+
+    
+  }
+  if (type == "Author"){
+    let splitter = pitch.description
+    splitter = splitter.search("@");
+    if(splitter > 1) {
+      fifthDiv.appendChild(approveBtn);
+    }
+    
+    fifthDiv.appendChild(moreBtn)
+    fifthDiv.appendChild(deleteBtn)
+  }
+  
+  if (pitch.denied == false && pitch.assistantApproval && pitch.generalApproval && pitch.seniorApproval) {
+    thirdDiv.appendChild(successBadge)
+    fifthDiv.appendChild(uploadBtn)
+    let uploadAlert = document.getElementById("uploadAlert")
+    uploadBtn.addEventListener("click", function() {
+      uploadAlert.removeAttribute("hidden");
+    })
+    let closeAlert = document.getElementById("closeUploadAlert");
+    closeAlert.addEventListener("click", function() {
+      uploadAlert.setAttribute("hidden", true)
+    })
   }
   thirdDiv.appendChild(fourthDiv)
   fourthDiv.appendChild(author)
@@ -195,18 +288,9 @@ function createCard(pitch) {
   fourthDiv.appendChild(storyType)
   fourthDiv.appendChild(genre)
   fourthDiv.appendChild(fifthDiv)
-  if (type != "Author") {
-    fifthDiv.appendChild(approveBtn)
-    fifthDiv.appendChild(denyBtn)
-    fifthDiv.appendChild(moreBtn)
-    fifthDiv.appendChild(editButton)
 
-  } else {
-    fifthDiv.appendChild(moreBtn)
-    fifthDiv.appendChild(deleteBtn)
 
-  }
-
+  
 
 
 }

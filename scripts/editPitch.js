@@ -22,6 +22,7 @@ function editPitch(pitch) {
 
 
 
+    //write into description the edits
     if (title != '' && completionDate != '' && tagLine != '') {
         if (oldPitch.title != pitch.title) {
             editedFields.title = pitch.title;

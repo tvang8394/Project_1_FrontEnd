@@ -14,7 +14,7 @@ function denyPitch(newPitch) {
       pitch.denied = true;
       let reasonDeny = document.getElementById("reasonDeny").value;
       let reasonAlert = document.getElementById("reasonDenyAlert");
-      let pitchDescription = pitch.description;
+      let pitchDescription = newPitch.description;
       let firstName = getCookie("firstName");
       let type = getCookie("type");
       let userId = getCookie("userId");
@@ -22,7 +22,7 @@ function denyPitch(newPitch) {
         let template = `@NAME: ${firstName}, User ID: ${userId}, Editor Status: ${type}, ReasonDeny: ${reasonDeny} `
         let newPitchDes = pitchDescription + "\n****************************\n" + template;
         newPitch.description = newPitchDes;
-        let jsonPitch = JSON.stringify(pitch);
+        let jsonPitch = JSON.stringify(newPitch);
         xhttp.send(jsonPitch);
         reasonAlert.setAttribute("hidden", true);
         window.location.reload();
