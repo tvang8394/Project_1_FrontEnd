@@ -26,6 +26,6 @@ Author:
 - Can track submitted pitch status.
 - Can edit or delete pitch.
 - Can upload pitch once it has been apprved by all parties.
--
+
 # Contributors
 - Tom Vang
