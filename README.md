@@ -1,4 +1,4 @@
-# Project_1_FrontEnd
+# SPMA
 RevPro P1 Pitch Manager Application
 
 The purpose of the Story Pitch Management System is to provide an organized pipeline for story pitches so that more new and creative stories can be given the opportunity to be published. The current system relies on email communication, which slows down the process and leaves some story pitches lost in the clutter and delayed by weeks or even months. There is no standard method of tracking this process, allowing many authors who are less persistent to then fall through the cracks.
